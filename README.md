@@ -44,7 +44,7 @@ belongs_to :user
 belongs_to :item
 has_one : shipping_address
 
-## shipping_addresss テーブル
+## shipping_addresses テーブル
 
 | Column          | Type       | Options                        |
 | -------         | ---------- | ------------------------------ |
