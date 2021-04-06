@@ -5,28 +5,29 @@
 | --------          | ------ | ----------- |
 | first_name        | string | null: false |
 | last_name         | string | null: false |
-| first_name _kana   | string | null: false |
+| first_name _kana   | string | null: false|
 | last_name_kana    | string | null: false |
-| email             | string | unique:true null: false
+| email             | string | unique:true, null: false
 | encrypted_password| string | null: false |
 | nickname          | string | null: false |
 | birthday          | date   | null: false |
 
-has_many :items
+has_many :item
 has_many :purchases
 
 ## items テーブル
 
-| Column              | Type    | Options     |
-| ------              | ------  | ----------- |
-| product             | string  | null: false |
-| category_id         | integer | null: false |
-| price               | integer | null: false |
-| condition_id        | integer | null: false |
-| shipping_charger_id | integer | null: false |
-| shipping_area_id    | integer | null: false |
-| shipping_days_id    | integer | null: false |
-| explanation         | integer | null: false |
+| Column              | Type      | Options     |
+| ------              | ------    | ----------- |
+| product             | string    | null: false |
+| category_id         | integer   | null: false |
+| price               | integer   | null: false |
+| condition_id        | integer   | null: false |
+| shipping_charger_id | integer   | null: false |
+| shipping_area_id    | integer   | null: false |
+| shipping_days_id    | integer   | null: false |
+| explanation         | text      | null: false |
+| user                | references| null: false, foreign_key: true |
 
 belongs_to :user
 has_one :purchase
@@ -43,7 +44,7 @@ belongs_to :user
 belongs_to :items
 has_one : shipping_address
 
-## shipping address テーブル
+## shipping_address テーブル
 
 | Column        | Type       | Options                        |
 | -------       | ---------- | ------------------------------ |
