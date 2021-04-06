@@ -7,34 +7,32 @@
 | last name         | string | null: false |
 | first name kana   | string | null: false |
 | last name kana    | string | null: false |
-| email             | string | unique:true |
+| email             | string | unique:true null: false
 | encrypted_password| string | null: false |
 | nickname          | string | null: false |
-| birthday          | string | null: false |
+| birthday          | date   | null: false |
 
 has_many :items
 has_many :purchases
-has_one :shipping address
 
 ## items テーブル
 
-| Column           | Type    | Options     |
-| ------           | ------  | ----------- |
-| product name     | string  | null: false |
-| category         | integer | null: false |
-| price            | integer | null: false |
-| image            | string  | null: false |
-| explanation      | string  | null: false |
-| condition        | string  | null: false |
-| shipping charger | string  | null: false |
-| shipping area    | string  | null: false |
-| shipping days    | string  | null: false |
+| Column              | Type    | Options     |
+| ------              | ------  | ----------- |
+| product             | string  | null: false |
+| category_id         | integer | null: false |
+| price               | integer | null: false |
+| condition_id        | integer | null: false |
+| shipping charger_id | integer | null: false |
+| shipping area_id    | integer | null: false |
+| shipping days_id    | integer | null: false |
+| prefectures         | integer | null: false |
 
 belongs_to :user
-has_one :shipping address
-has_one :purchase
+has_one :purchases
 
-## purchase テーブル
+
+## purchases テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
@@ -43,21 +41,17 @@ has_one :purchase
 
 belong_to :user
 belong_to :items
-has_one : address
+has_one : shipping_address
 
 ## shipping address テーブル
 
 | Column        | Type       | Options                        |
 | -------       | ---------- | ------------------------------ |
-| purchase user | references | null: false, foreign_key: true |
-| item          | references | null: false, foreign_key: true |
-| postal code   | string     | null: false                    |
-| phone number  | string     | null: false                    |
-| prefectures   | string     | null: false                    |
+| postal_code   | string     | null: false                    |
+| phone_number  | string     | null: false                    |
+| prefectures   | integer    | null: false                    |
 | municipality  | string     | null: false                    |
 | address       | string     | null: false                    |
-| building name | string     | null: false                    |
+| building_name | string     |
 
-belong_to :user
-belong_to :items
-belong_to :purchase
+belong_to :purchases
