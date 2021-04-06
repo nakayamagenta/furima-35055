@@ -3,10 +3,10 @@
 
 | Column            | Type   | Options     |
 | --------          | ------ | ----------- |
-| first name        | string | null: false |
-| last name         | string | null: false |
-| first name kana   | string | null: false |
-| last name kana    | string | null: false |
+| first_name        | string | null: false |
+| last_name         | string | null: false |
+| first_name _kana   | string | null: false |
+| last_name_kana    | string | null: false |
 | email             | string | unique:true null: false
 | encrypted_password| string | null: false |
 | nickname          | string | null: false |
@@ -23,13 +23,13 @@ has_many :purchases
 | category_id         | integer | null: false |
 | price               | integer | null: false |
 | condition_id        | integer | null: false |
-| shipping charger_id | integer | null: false |
-| shipping area_id    | integer | null: false |
-| shipping days_id    | integer | null: false |
-| prefectures         | integer | null: false |
+| shipping_charger_id | integer | null: false |
+| shipping_area_id    | integer | null: false |
+| shipping_days_id    | integer | null: false |
+| explanation         | integer | null: false |
 
 belongs_to :user
-has_one :purchases
+has_one :purchase
 
 
 ## purchases テーブル
@@ -39,8 +39,8 @@ has_one :purchases
 | user   | references | null: false, foreign_key: true |
 | item   | references | null: false, foreign_key: true |
 
-belong_to :user
-belong_to :items
+belongs_to :user
+belongs_to :items
 has_one : shipping_address
 
 ## shipping address テーブル
@@ -53,5 +53,6 @@ has_one : shipping_address
 | municipality  | string     | null: false                    |
 | address       | string     | null: false                    |
 | building_name | string     |
+| purchase      | references | null: false, foreign_key: true |
 
-belong_to :purchases
+belongs_to :purchase
