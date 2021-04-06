@@ -1,24 +1,42 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| name     | string | null: false |
+| email    | string | null: false |
+| password | string | null: false |
+| nickname   | string | null: false |
+| birthday   | string | null: false |
+| crefit   | string | null: false |
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column | Type   | Options     |
+| ------ | ------ | ----------- |
+| puroduct name   | string | null: false |
+| category  | string | null: false |
+| price  | string | null: false |
 
-* Database initialization
 
-* How to run the test suite
+## purchase テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| items   | references | null: false, foreign_key: true |
 
-* Deployment instructions
+## shipping address テーブル
 
-* ...
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| content | string     |                                |
+| user    | references | null: false, foreign_key: true |
+| items    | references | null: false, foreign_key: true |
+| postal code   | string | null: false |
+| street address  | string | null: false |
+| phone number  | string | null: false |
+
+
