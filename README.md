@@ -12,7 +12,7 @@
 | nickname          | string | null: false |
 | birthday          | date   | null: false |
 
-has_many :item
+has_many :items
 has_many :purchases
 
 ## items テーブル
@@ -25,7 +25,7 @@ has_many :purchases
 | condition_id        | integer   | null: false |
 | shipping_charger_id | integer   | null: false |
 | shipping_area_id    | integer   | null: false |
-| shipping_days_id    | integer   | null: false |
+| shipping_day_id     | integer   | null: false |
 | explanation         | text      | null: false |
 | user                | references| null: false, foreign_key: true |
 
@@ -41,7 +41,7 @@ has_one :purchase
 | item   | references | null: false, foreign_key: true |
 
 belongs_to :user
-belongs_to :items
+belongs_to :item
 has_one : shipping_address
 
 ## shipping_address テーブル
