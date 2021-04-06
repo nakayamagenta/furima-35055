@@ -7,7 +7,7 @@
 | last_name         | string | null: false |
 | first_name _kana   | string | null: false|
 | last_name_kana    | string | null: false |
-| email             | string | unique:true, null: false
+| email             | string | unique:true, null: false |
 | encrypted_password| string | null: false |
 | nickname          | string | null: false |
 | birthday          | date   | null: false |
@@ -54,6 +54,6 @@ has_one : shipping_address
 | municipality  | string     | null: false                    |
 | address       | string     | null: false                    |
 | building_name | string     |
-| purchase      | references | null: false, foreign_key: true |
+| purchase_id   | references | null: false, foreign_key: true |
 
 belongs_to :purchase
