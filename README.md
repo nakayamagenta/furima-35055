@@ -11,10 +11,9 @@
 | encrypted_password| string | null: false |
 | nickname          | string | null: false |
 | birthday          | string | null: false |
-| credit            | string | null: false |
 
 has_many :items
-has_many :purchase
+has_many :purchases
 has_one :shipping address
 
 ## items テーブル
@@ -44,7 +43,7 @@ has_one :purchase
 
 belong_to :user
 belong_to :items
-has_one :shipping address
+has_one : address
 
 ## shipping address テーブル
 
