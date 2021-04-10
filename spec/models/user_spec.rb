@@ -17,13 +17,6 @@ RSpec.describe User, type: :model do
       expect(@user).to be_valid
       end
 
-      it 'passwordとpassword_confirmationが一致していれば登録できる'do
-      @user.password = '1a2b3'
-      @user.password_confirmation = '1a2b3c4'
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
-    end
-
       it "emailが重複していなくて＠があれば登録できる" do
       @user.email = 'hogehuga@com'
       expect(@user).to be_valid
@@ -47,6 +40,13 @@ RSpec.describe User, type: :model do
         @user.password = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
+        end
+
+        it 'passwordとpassword_confirmationが一致していれば登録できる'do
+        @user.password = '1a2b3'
+        @user.password_confirmation = '1a2b3c4'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
         end
     
         it 'passwordとpassword_confirmationが５文字以下だと登録できないこと'do
