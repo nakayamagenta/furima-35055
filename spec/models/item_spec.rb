@@ -7,7 +7,7 @@ RSpec.describe Item, type: :model do
 
     describe '商品の出品登録' do
       context '商品の登録がうまくいくとき' do
-       it '商品名と商品の説明、カテゴリー、商品の状態、地域、日数、配送料、販売価格が必須であること' do
+       it '商品名と商品の説明、カテゴリー、商品の状態、地域、日数、配送料、販売価格と画像が必須であること' do
         expect(@item).to be_valid
        end
 
@@ -86,7 +86,19 @@ RSpec.describe Item, type: :model do
       it '販売価格が300〜99999999以外だと登録できない'do
       @item.price='299'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price must be greater than 300")
+      expect(@item.errors.full_messages).to include("Price must be greater than 299")
+    end
+
+    it '写真が空と登録できない'do
+    @item.image=nil
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Image can't be blank")
+    end
+
+    it 'userが紐付いていないと保存できないこと'do
+    @item.user=nil
+    @item.valid?
+    expect(@item.errors.full_messages).to include("User must exist")
     end
   end
 end
