@@ -89,7 +89,7 @@ RSpec.describe Item, type: :model do
       it '配送料のidに1が選択されている場合は出品できない'do
       @item.shipping_chager_id= 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping chager can't be blank"）
+      expect(@item.errors.full_messages).to include("Shipping chager can't be blank")
       end
 
       it '販売価格が空だと登録できない'do
@@ -110,8 +110,8 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Price must be greater than 299")
     end
 
-      it '販売価格が9,999,999以上だと登録できない'do
-      @item.price=9,999,999
+      it '販売価格が10,000,000以上だと登録できない'do
+      @item.price=10,000,000
       @item.valid?
       expect(@item.errors.full_messages).to include("Price can't be blank")
       end
