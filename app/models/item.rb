@@ -11,7 +11,7 @@ class Item < ApplicationRecord
     validates :image
   end
 
-  with_options numericality: {other_than: 1, message: "can't be blank"} do
+  with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :condiction_id
     validates :shipping_area_id
@@ -20,9 +20,13 @@ class Item < ApplicationRecord
   end
 
   validates :price, numericality: { only_integer: true,
-  greater_than: 299, less_than: 10000000}
-  VALID_PRICEL_REGEX =                 /\A[0-9]+\z/
+                                    greater_than: 299, less_than: 10_000_000 }
 
   belongs_to :user
   has_one_attached :image
+  belongs_to :category
+  belongs_to :condiction
+  belongs_to :shipping_area
+  belongs_to :shipping_chager
+  belongs_to :shipping_day
 end

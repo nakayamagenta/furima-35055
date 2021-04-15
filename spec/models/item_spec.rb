@@ -12,19 +12,9 @@ RSpec.describe Item, type: :model do
        end
 
        it '販売価格は、¥300~¥9,999,999の間のみで半角数字のみ保存可能であること' do
-        @item.price = '99999'
+        @item.price = 99999
         expect(@item).to be_valid
        end
-
-      it '商品名が４０文字までだと登録できる' do
-        @item.product = 'おもちゃ'
-        expect(@item).to be_valid
-      end
-
-      it '商品の説明が４００文字未満だと登録できる' do
-        @item.explanation = '寿司美味しいよね'
-        expect(@item).to be_valid
-        end
       end
     end
 
@@ -47,8 +37,21 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
+      it 'カテゴリーのidに1が選択されている場合は出品できない'do
+      @item.category_id= 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
+
+
       it '商品の状態が空だと登録できない'do
       @item.condiction_id= ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Condiction can't be blank")
+      end
+
+      it '商品のidに1が選択されている場合は出品できない'do
+      @item.condiction_id= 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Condiction can't be blank")
       end
@@ -59,16 +62,34 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Shipping area can't be blank")
       end
 
+      it '発送地域のidに1が選択されている場合は出品できない'do
+      @item.shipping_area_id= 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping area can't be blank")
+      end
+
       it '発送日数が空と登録できない'do
       @item.shipping_day_id= ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping day can't be blank")
       end
 
-      it '配送料が空だと登録できない'do
-      @item.shipping_day_id= ''
+      it '発送日数のidに1が選択されている場合は出品できない'do
+      @item.shipping_day_id= 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+      end
+
+      it '配送料が空だと登録できない'do
+      @item.shipping_chager_id= ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping chager can't be blank")
+      end
+
+      it '配送料のidに1が選択されている場合は出品できない'do
+      @item.shipping_chager_id= 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping chager can't be blank"）
       end
 
       it '販売価格が空だと登録できない'do
@@ -83,11 +104,17 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Price is not a number")
       end
 
-      it '販売価格が300〜99999999以外だと登録できない'do
-      @item.price='299'
+      it '販売価格が299以下だと登録できない'do
+      @item.price=299
       @item.valid?
       expect(@item.errors.full_messages).to include("Price must be greater than 299")
     end
+
+      it '販売価格が9,999,999以上だと登録できない'do
+      @item.price=9,999,999
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price can't be blank")
+      end
 
     it '写真が空と登録できない'do
     @item.image=nil
