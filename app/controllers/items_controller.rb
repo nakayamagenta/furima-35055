@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only:[:edit, :show, :update, :destroy]
-  before_action :set_items, only: [:edit, :update]
+  before_action :set_rascal, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.includes(:user).order("created_at DESC")
@@ -29,8 +29,6 @@ class ItemsController < ApplicationController
   def destroy
     if @item.destroy
       redirect_to root_path
-    else
-      redirect_to root_path
     end
   end
 
@@ -53,7 +51,7 @@ class ItemsController < ApplicationController
     @item= Item.find(params[:id])
   end
 
-  def set_items
+  def set_rascal
     redirect_to root_path unless current_user.id == @item.user_id
   end
 end
