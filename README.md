@@ -42,9 +42,9 @@ has_one :purchase
 
 belongs_to :user
 belongs_to :item
-has_one : shipping_address
+has_one : addresses
 
-## shipping_addresses テーブル
+## addresses テーブル
 
 | Column          | Type       | Options                        |
 | -------         | ---------- | ------------------------------ |
