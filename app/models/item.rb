@@ -30,4 +30,5 @@ class Item < ApplicationRecord
   belongs_to :shipping_area
   belongs_to :shipping_chager
   belongs_to :shipping_day
+  has_one :purchase
 end
