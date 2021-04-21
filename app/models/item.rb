@@ -5,6 +5,7 @@ class Item < ApplicationRecord
     validates :category_id
     validates :price
     validates :condiction_id
+    validates :shipping_area_id
     validates :shipping_day_id
     validates :explanation
     validates :shipping_chager_id
@@ -14,6 +15,7 @@ class Item < ApplicationRecord
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :condiction_id
+    validates :shipping_area_id
     validates :shipping_day_id
     validates :shipping_chager_id
   end
@@ -23,7 +25,6 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
-  has_many :purchases
   belongs_to :category
   belongs_to :condiction
   belongs_to :shipping_area
