@@ -9,6 +9,8 @@ class PurchaseAddress
     validates :municipality, format: {with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/ }
     validates :address, format:  {with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])|\A[0-9０-９]+\z/ }
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   def save
