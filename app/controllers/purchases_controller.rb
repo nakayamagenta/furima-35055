@@ -1,13 +1,10 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_item, only:[:index, :create]
-  before_action :sold_out_item, only: [:index]
+  before_action :set_item [:index, :create]
+  before_action :sold_out_item [:index]
 
   def index
     @purchase_address = PurchaseAddress.new
-    if current_user == @item.user
-      redirect_to root_path
-    end
   end
 
   def create
@@ -38,6 +35,9 @@ class PurchasesController < ApplicationController
   
   def set_item
     @item = Item.find(params[:item_id])
+    if current_user == @item.user
+      redirect_to root_path
+    end
   end
 
    def sold_out_item
