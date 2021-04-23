@@ -52,6 +52,6 @@ class ItemsController < ApplicationController
   end
 
   def set_rascal
-    redirect_to root_path if current_user.id == @item.user_id || @item.purchase.present?
+    redirect_to root_path if current_user.id == @item.user_id && @item.purchase.present?
   end
 end
